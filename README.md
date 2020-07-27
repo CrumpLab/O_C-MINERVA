@@ -1,7 +1,7 @@
 Hemisphere Suite: Alternate Alternate Firmware for Ornament and Crime
 ===
 
-![My image](https://farm1.staticflickr.com/676/20090774694_b56e557693_b.jpg)
+This is a copy of the Hemisphere suite, and I'm trying to learn how to code modules for hemisphere, many thanks to Jason Justian for this codebase!
 
 
 ### firmware:
