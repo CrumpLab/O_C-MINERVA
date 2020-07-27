@@ -11,10 +11,12 @@
 // * Category filtering is deprecated at 1.8, but I'm leaving the per-applet categorization
 // alone to avoid breaking forked codebases by other developers.
 
-#define HEMISPHERE_AVAILABLE_APPLETS 51
+#define HEMISPHERE_AVAILABLE_APPLETS 43
 
 //////////////////  id  cat   class name
 #define HEMISPHERE_APPLETS { \
+    DECLARE_APPLET( 130, 0x10, PrintCV), \
+    DECLARE_APPLET( 130, 0x10, CVOffset), \
     DECLARE_APPLET(  8, 0x01, ADSREG), \
     DECLARE_APPLET( 34, 0x01, ADEG), \
     DECLARE_APPLET( 15, 0x02, AnnularFusion), \
@@ -53,18 +55,8 @@
     DECLARE_APPLET( 18, 0x02, TM), \
     DECLARE_APPLET( 36, 0x04, Shuffle), \
     DECLARE_APPLET(  7, 0x01, SkewedLFO), \
-    DECLARE_APPLET( 19, 0x01, Slew), \
-    DECLARE_APPLET( 46, 0x08, Squanch), \
-    DECLARE_APPLET(  3, 0x10, Switch), \
-    DECLARE_APPLET( 13, 0x40, TLNeuron), \
-    DECLARE_APPLET( 37, 0x40, Trending), \
     DECLARE_APPLET( 11, 0x06, TrigSeq), \
     DECLARE_APPLET( 25, 0x06, TrigSeq16), \
     DECLARE_APPLET( 39, 0x80, Tuner), \
-    DECLARE_APPLET( 52, 0x01, VectorEG), \
-    DECLARE_APPLET( 49, 0x01, VectorLFO), \
-    DECLARE_APPLET( 53, 0x01, VectorMod), \
-    DECLARE_APPLET( 54, 0x01, VectorMorph), \
-    DECLARE_APPLET( 43, 0x10, Voltage), \
 }
 /*    DECLARE_APPLET(127, 0x80, DIAGNOSTIC), \ */
