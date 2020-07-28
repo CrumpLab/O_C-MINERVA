@@ -18,11 +18,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-class PrintCV : public HemisphereApplet {
+class LofiAudio : public HemisphereApplet {
 public:
 
     const char* applet_name() { // Maximum 10 characters
-        return "PrintCV";
+        return "LofiAudio";
     }
 
 	/* Run when the Applet is selected */
@@ -80,19 +80,18 @@ protected:
     void SetHelp() {
         //                               "------------------" <-- Size Guide
         help[HEMISPHERE_HELP_DIGITALS] = "Digital in help";
-        help[HEMISPHERE_HELP_CVS]      = "CV in help";
-        help[HEMISPHERE_HELP_OUTS]     = "Out help";
-        help[HEMISPHERE_HELP_ENCODER]  = "123456789012345678";
+        help[HEMISPHERE_HELP_CVS]      = "CV12: audio";
+        help[HEMISPHERE_HELP_OUTS]     = "Out12: lofi out";
+        help[HEMISPHERE_HELP_ENCODER]  = "no encoder";
         //                               "------------------" <-- Size Guide
     }
 
 private:
 
   void DrawInterface() {
-    gfxPrint(1, 15, "1: ");
-    gfxPrintVoltage(In(0));
-    gfxPrint(1, 25, "2: ");
-    gfxPrintVoltage(In(1));
+    gfxPrint(1, 15, "audCV in ");
+    gfxPrint(1, 25, "lofi out ");
+    gfxPrint(1, 35, "about 1khz");
   }
 };
 
@@ -100,18 +99,18 @@ private:
 ////////////////////////////////////////////////////////////////////////////////
 //// Hemisphere Applet Functions
 ///
-///  Once you run the find-and-replace to make these refer to PrintCV,
+///  Once you run the find-and-replace to make these refer to LofiAudio,
 ///  it's usually not necessary to do anything with these functions. You
 ///  should prefer to handle things in the HemisphereApplet child class
 ///  above.
 ////////////////////////////////////////////////////////////////////////////////
-PrintCV PrintCV_instance[2];
+LofiAudio LofiAudio_instance[2];
 
-void PrintCV_Start(bool hemisphere) {PrintCV_instance[hemisphere].BaseStart(hemisphere);}
-void PrintCV_Controller(bool hemisphere, bool forwarding) {PrintCV_instance[hemisphere].BaseController(forwarding);}
-void PrintCV_View(bool hemisphere) {PrintCV_instance[hemisphere].BaseView();}
-void PrintCV_OnButtonPress(bool hemisphere) {PrintCV_instance[hemisphere].OnButtonPress();}
-void PrintCV_OnEncoderMove(bool hemisphere, int direction) {PrintCV_instance[hemisphere].OnEncoderMove(direction);}
-void PrintCV_ToggleHelpScreen(bool hemisphere) {PrintCV_instance[hemisphere].HelpScreen();}
-uint32_t PrintCV_OnDataRequest(bool hemisphere) {return PrintCV_instance[hemisphere].OnDataRequest();}
-void PrintCV_OnDataReceive(bool hemisphere, uint32_t data) {PrintCV_instance[hemisphere].OnDataReceive(data);}
+void LofiAudio_Start(bool hemisphere) {LofiAudio_instance[hemisphere].BaseStart(hemisphere);}
+void LofiAudio_Controller(bool hemisphere, bool forwarding) {LofiAudio_instance[hemisphere].BaseController(forwarding);}
+void LofiAudio_View(bool hemisphere) {LofiAudio_instance[hemisphere].BaseView();}
+void LofiAudio_OnButtonPress(bool hemisphere) {LofiAudio_instance[hemisphere].OnButtonPress();}
+void LofiAudio_OnEncoderMove(bool hemisphere, int direction) {LofiAudio_instance[hemisphere].OnEncoderMove(direction);}
+void LofiAudio_ToggleHelpScreen(bool hemisphere) {LofiAudio_instance[hemisphere].HelpScreen();}
+uint32_t LofiAudio_OnDataRequest(bool hemisphere) {return LofiAudio_instance[hemisphere].OnDataRequest();}
+void LofiAudio_OnDataReceive(bool hemisphere, uint32_t data) {LofiAudio_instance[hemisphere].OnDataReceive(data);}

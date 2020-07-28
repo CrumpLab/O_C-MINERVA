@@ -18,21 +18,27 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-class PrintCV : public HemisphereApplet {
+#define ATTENOFF_INCREMENTS 128
+
+class Attenuate : public HemisphereApplet {
 public:
 
     const char* applet_name() { // Maximum 10 characters
-        return "PrintCV";
+        return "Attenuate";
     }
 
 	/* Run when the Applet is selected */
     void Start() {
+      ForEachChannel(ch) level[ch] = 63;
     }
 
 	/* Run during the interrupt service routine, 16667 times per second */
     void Controller() {
-      ForEachChannel(ch) {  /* Sends CV Ins to Outs */
-        Out(ch, In(ch));
+      ForEachChannel(ch)
+      {
+          int signal = Proportion(level[ch], 63, In(ch));
+          signal = constrain(signal, -HEMISPHERE_3V_CV, HEMISPHERE_MAX_CV);
+          Out(ch, signal);
       }
     }
 
@@ -52,6 +58,9 @@ public:
 	 * direction -1 is counterclockwise
 	 */
     void OnEncoderMove(int direction) {
+      ForEachChannel(ch) {
+        level[ch] = constrain(level[ch] + direction, 0, 63);
+      }
     }
 
     /* Each applet may save up to 32 bits of data. When data is requested from
@@ -88,11 +97,10 @@ protected:
 
 private:
 
+  int level[2];
+
   void DrawInterface() {
-    gfxPrint(1, 15, "1: ");
-    gfxPrintVoltage(In(0));
-    gfxPrint(1, 25, "2: ");
-    gfxPrintVoltage(In(1));
+    gfxPrint(1, 15, "NA");
   }
 };
 
@@ -100,18 +108,18 @@ private:
 ////////////////////////////////////////////////////////////////////////////////
 //// Hemisphere Applet Functions
 ///
-///  Once you run the find-and-replace to make these refer to PrintCV,
+///  Once you run the find-and-replace to make these refer to Attenuate,
 ///  it's usually not necessary to do anything with these functions. You
 ///  should prefer to handle things in the HemisphereApplet child class
 ///  above.
 ////////////////////////////////////////////////////////////////////////////////
-PrintCV PrintCV_instance[2];
+Attenuate Attenuate_instance[2];
 
-void PrintCV_Start(bool hemisphere) {PrintCV_instance[hemisphere].BaseStart(hemisphere);}
-void PrintCV_Controller(bool hemisphere, bool forwarding) {PrintCV_instance[hemisphere].BaseController(forwarding);}
-void PrintCV_View(bool hemisphere) {PrintCV_instance[hemisphere].BaseView();}
-void PrintCV_OnButtonPress(bool hemisphere) {PrintCV_instance[hemisphere].OnButtonPress();}
-void PrintCV_OnEncoderMove(bool hemisphere, int direction) {PrintCV_instance[hemisphere].OnEncoderMove(direction);}
-void PrintCV_ToggleHelpScreen(bool hemisphere) {PrintCV_instance[hemisphere].HelpScreen();}
-uint32_t PrintCV_OnDataRequest(bool hemisphere) {return PrintCV_instance[hemisphere].OnDataRequest();}
-void PrintCV_OnDataReceive(bool hemisphere, uint32_t data) {PrintCV_instance[hemisphere].OnDataReceive(data);}
+void Attenuate_Start(bool hemisphere) {Attenuate_instance[hemisphere].BaseStart(hemisphere);}
+void Attenuate_Controller(bool hemisphere, bool forwarding) {Attenuate_instance[hemisphere].BaseController(forwarding);}
+void Attenuate_View(bool hemisphere) {Attenuate_instance[hemisphere].BaseView();}
+void Attenuate_OnButtonPress(bool hemisphere) {Attenuate_instance[hemisphere].OnButtonPress();}
+void Attenuate_OnEncoderMove(bool hemisphere, int direction) {Attenuate_instance[hemisphere].OnEncoderMove(direction);}
+void Attenuate_ToggleHelpScreen(bool hemisphere) {Attenuate_instance[hemisphere].HelpScreen();}
+uint32_t Attenuate_OnDataRequest(bool hemisphere) {return Attenuate_instance[hemisphere].OnDataRequest();}
+void Attenuate_OnDataReceive(bool hemisphere, uint32_t data) {Attenuate_instance[hemisphere].OnDataReceive(data);}

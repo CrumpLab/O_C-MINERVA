@@ -11,12 +11,14 @@
 // * Category filtering is deprecated at 1.8, but I'm leaving the per-applet categorization
 // alone to avoid breaking forked codebases by other developers.
 
-#define HEMISPHERE_AVAILABLE_APPLETS 43
+#define HEMISPHERE_AVAILABLE_APPLETS 45
 
 //////////////////  id  cat   class name
 #define HEMISPHERE_APPLETS { \
     DECLARE_APPLET( 130, 0x10, PrintCV), \
     DECLARE_APPLET( 130, 0x10, CVOffset), \
+    DECLARE_APPLET( 130, 0x10, LofiAudio), \
+    DECLARE_APPLET( 130, 0x10, Attenuate), \
     DECLARE_APPLET(  8, 0x01, ADSREG), \
     DECLARE_APPLET( 34, 0x01, ADEG), \
     DECLARE_APPLET( 15, 0x02, AnnularFusion), \
