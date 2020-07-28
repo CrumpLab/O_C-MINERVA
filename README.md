@@ -3,6 +3,8 @@ Hemisphere Suite: Alternate Alternate Firmware for Ornament and Crime
 
 This is a copy of the Hemisphere suite, and I'm trying to learn how to code modules for hemisphere, many thanks to Jason Justian for this codebase!
 
+At the moment I am blogging about learning to code for hemisphere over here <https://crumplab.github.io/blogposts/7_28_20_OC/7_28_20_OC.html>.
+
 
 ### firmware:
 
